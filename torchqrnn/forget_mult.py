@@ -1,6 +1,12 @@
 import math
 import torch
 from torch.autograd import Variable
+
+try:
+  from cupy.cuda import function
+except:
+  print("cupy not available.")
+  
 from pynvrtc.compiler import Program
 from collections import namedtuple
 
