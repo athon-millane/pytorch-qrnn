@@ -190,8 +190,8 @@ class ForgetMult(torch.nn.Module):
         if use_cuda: assert f.is_cuda and x.is_cuda, 'GPU ForgetMult with fast element-wise CUDA kernel requested but tensors not on GPU'
         ###
         # Avoiding 'RuntimeError: expected a Variable argument, but got NoneType' when hidden_init is None
-        if hidden_init is None: return GPUForgetMult()(f, x) if use_cuda else CPUForgetMult()(f, x)
-        return GPUForgetMult()(f, x, hidden_init) if use_cuda else CPUForgetMult()(f, x, hidden_init)
+        if hidden_init is None: return GPUForgetMult.apply(f, x) if use_cuda else CPUForgetMult.apply(f, x)
+        return GPUForgetMult.apply(f, x, hidden_init) if use_cuda else CPUForgetMult.apply(f, x, hidden_init)
 
 ###
 
